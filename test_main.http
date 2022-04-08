@@ -1,0 +1,23 @@
+### REGISTER
+POST http://127.0.0.1:8000/register
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test"
+}
+
+### LOGIN
+POST http://127.0.0.1:8000/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "user",
+  "password": "1234"
+}
+
+> {%
+    client.global.set("token", response.body.access_token);
+%}
