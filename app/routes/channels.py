@@ -55,10 +55,12 @@ async def websocket_endpoint(websocket: WebSocket, db: Session = Depends(get_db)
 
 @router.post("/channels")
 async def create_channel(channel: schemas.Channel, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
+    channel.name = channel.name.strip().lower()
+
     if db.query(models.Channel).filter(models.Channel.name == channel.name).first():
         raise HTTPException(status_code=400, detail="Channel already exists")
 
-    channel = models.Channel(name=channel.name.strip().lower(), description=channel.description.strip())
+    channel = models.Channel(name=channel.name, description=channel.description.strip())
 
     db.add(channel)
     db.commit()
