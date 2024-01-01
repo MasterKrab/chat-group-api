@@ -37,4 +37,4 @@ virtualenv-clone==0.5.7
 websockets==10.2
 wincertstore==0.2
 zxcvbn==4.4.28
-psycopg2-binary=2.9.9
+psycopg2-binary==2.9.9
